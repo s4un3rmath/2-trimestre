@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            background-color: beige;
+            background-color: lightcoral;
             font-family: Georgia, 'Times New Roman', Times, serif;
             display: flex;           /* Ativa o modo de alinhamento flexível */
             flex-direction: column;  /* Organiza os elementos um embaixo do outro */
