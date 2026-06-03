@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back-End</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: beige;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            display: flex;           /* Ativa o modo de alinhamento flexível */
+            flex-direction: column;  /* Organiza os elementos um embaixo do outro */
+            align-items: center;     /* Centraliza na horizontal (esquerda/direita) */
+            justify-content: center; /* Centraliza na vertical (cima/baixo) */
+            height: 100vh;           /* Força a página a usar 100% da altura da tela */
+            margin: 0;
+            gap: 15px;            
+            padding: 20px;
+        }
+    </style>
+    <script>
+        function pesquisarCep(){
+            const cep = document.getElementById("cep").value
+
+            const validacep = /^[0-9]{8}$/
+            if (validacep.test(cep)){
+
+
+            const link = "https://viacep.com.br/ws/" + cep + "/json/?callback=preencherEndereco"
+            var script = document.createElement("script")
+            script.src = link
+            document.body.appendChild(script)
+            } else {
+                resposta.textContent = "O CEP foi digitado fora do padrão aceito. Digite 8 números!"
+            }
+        }
+        function preencherEndereco(conteudo){
+            if ("erro" in conteudo){
+                resposta.textContent = "O CEP digitado está incorreto"
+                document.getElementById("cep").value = ""
+            } else {
+                resposta.textContent =  JSON.stringify (conteudo)
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <label>CEP:</label>
+    <input type="text" id="cep">
+    <button onclick="pesquisarCep()">Enviar</button>
+    <p id="resposta"></p>
+</body>
+</html>
